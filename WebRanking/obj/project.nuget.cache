@@ -1,0 +1,22 @@
+{
+  "version": 2,
+  "dgSpecHash": "lwkdCMrMwc3va1dpKMhs4eP++9ptO/l1ui5snqUHQhV/O2vx78htfuU9ZJYw0uXMrUx3txnRubWrGilpksDKog==",
+  "success": true,
+  "projectFilePath": "C:\\Jayeta\\WebRanking\\WebRanking\\WebRanking.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\3702\\.nuget\\packages\\wpfcustommessagebox\\1.0.7\\wpfcustommessagebox.1.0.7.nupkg.sha512",
+    "C:\\Users\\3702\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\3.1.13\\microsoft.netcore.app.host.win-x64.3.1.13.nupkg.sha512"
+  ],
+  "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'WPFCustomMessageBox 1.0.7' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework '.NETCoreApp,Version=v3.1'. This package may not be fully compatible with your project.",
+      "libraryId": "WPFCustomMessageBox",
+      "targetGraphs": [
+        ".NETCoreApp,Version=v3.1"
+      ]
+    }
+  ]
+}

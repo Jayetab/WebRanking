@@ -1,0 +1,57 @@
+﻿<UserControl x:Class="WebRanking.View.WebRankView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WebRanking.View" xmlns:ViewModel="clr-namespace:WebRanking.ViewModel" xmlns:bal="clr-namespace:WebRanking.BAL" xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" xmlns:behaviours="clr-namespace:WebRanking.Common"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.DataContext>
+        <ViewModel:WebRankViewModel/>
+    </UserControl.DataContext>
+    <UserControl.Resources>
+        <ControlTemplate x:Key="TextBoxErrorTemplate">
+            <DockPanel LastChildFill="True">
+                <TextBlock DockPanel.Dock="Bottom" Foreground="Red" FontSize="8pt" 
+                           Text="{Binding ElementName=MyAdorner,Path=AdornedElement.(Validation.Errors)[0].ErrorContent}"/>
+                <Border BorderBrush="Red" BorderThickness="1" Width="605" >
+                    <AdornedElementPlaceholder Name="MyAdorner" />
+                </Border>
+            </DockPanel>
+        </ControlTemplate>
+    </UserControl.Resources>
+    <Grid x:Name="WebRankGrid">
+        <GroupBox x:Name="InputGroup" Header="Get Web Rank" HorizontalAlignment="Left" Height="200" Margin="10,10,0,100" VerticalAlignment="Top" Width="760">
+            <Grid x:Name="InputGrid" HorizontalAlignment="Left" Height="130" Margin="0,10,0,0" VerticalAlignment="Top" Width="756">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="130" />
+                    <ColumnDefinition Width="620" />
+                </Grid.ColumnDefinitions>
+                <Label x:Name="SearchKeyLabel" Content="Search Key Word" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" Height="32" Width="109"/>
+                <Label x:Name="SearchUrlLabel" Content="Search URL" HorizontalAlignment="Left" Margin="10,45,0,0" VerticalAlignment="Top" Height="37" Width="109"/>
+                <TextBox x:Name="SearchKeyTextBox" Validation.ErrorTemplate="{StaticResource TextBoxErrorTemplate}"  Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="605">
+                    <TextBox.Text>
+                        <Binding Path="SearchKeyWord"  UpdateSourceTrigger="PropertyChanged" NotifyOnValidationError="True" ValidatesOnDataErrors="True">
+                            <Binding.ValidationRules>
+                                <ExceptionValidationRule/>
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
+                <TextBox x:Name="UrlTextBox" Validation.ErrorTemplate="{StaticResource TextBoxErrorTemplate}" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="10,50,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="605">
+                    <TextBox.Text>
+                        <Binding Path="SearchURL" UpdateSourceTrigger="PropertyChanged" NotifyOnValidationError="True" ValidatesOnDataErrors="True">
+                            <Binding.ValidationRules>
+                                <ExceptionValidationRule/>
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
+                <Button x:Name="SearchButton" Command="{Binding GetWebRankCmd}" Content="Search" Grid.Column="1" HorizontalAlignment="Left" Margin="503,90,0,0" VerticalAlignment="Top" Width="108" Height="34" Background="#FF28A8A2" BorderBrush="#FF1A747E"/>
+            </Grid>
+        </GroupBox>
+        <GroupBox x:Name="SearchResultGroupBox" Header="Web Rank Result" HorizontalAlignment="Left" Height="170" Margin="10,220,0,10" VerticalAlignment="Top" Width="760">
+            <TextBox x:Name="SearchResultTextBox" Text="{Binding Path=SearchResult, ValidatesOnDataErrors=True}" HorizontalAlignment="Left" Height="120" Margin="5,22,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="739" IsReadOnlyCaretVisible="True" IsReadOnly="true"/>
+        </GroupBox>
+    </Grid>
+</UserControl>
